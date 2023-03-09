@@ -3,6 +3,15 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
+  firebaseConfig : {
+    apiKey: "AIzaSyCDDiKa1RakvfzZnt-ymOauTeD1a1DFsx8",
+    authDomain: "el-mejor-chat-del-mundo-479c1.firebaseapp.com",
+    projectId: "el-mejor-chat-del-mundo-479c1",
+    storageBucket: "el-mejor-chat-del-mundo-479c1.appspot.com",
+    messagingSenderId: "558520547135",
+    appId: "1:558520547135:web:7fe6523752865175a0458a",
+    measurementId: "G-FC4DH3W6S6"
+  },
   production: false
 };
 
