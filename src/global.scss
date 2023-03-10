@@ -24,3 +24,17 @@
 @import "~@ionic/angular/css/text-alignment.css";
 @import "~@ionic/angular/css/text-transformation.css";
 @import "~@ionic/angular/css/flex-utils.css";
+
+
+button{
+    background-color: rgb(43, 125, 232);
+    color: white;
+    padding: 1rem;
+    border-radius: 50px;
+}
+button:hover{
+    background-color: rgb(31, 92, 173);
+    color: white;
+    padding: 1rem;
+    border-radius: 50px;
+}

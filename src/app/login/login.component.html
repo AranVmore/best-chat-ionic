@@ -1,4 +1,17 @@
-<p>
-  login works!
-</p>
-<button (click)="authGoogle()">holaaa</button>
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      El chat ArVM
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <div id="container">
+    <h1>Bienvenidos a mi chatNoGPT</h1>
+    <div class="img-chat">
+      <img src="assets/img/4500_7_02.jpg">
+    </div>
+    <button (click)="authGoogle()">Logeate con Google</button>
+  </div>
+</ion-content>
