@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
-import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
+import { getAuth, signOut, signInWithPopup, GoogleAuthProvider, onAuthStateChanged } from "firebase/auth";
 import { initializeApp } from "firebase/app";
 
 import { environment } from 'src/environments/environment';
+import { Router, RouterModule } from '@angular/router';
 
 const app = initializeApp(environment.firebaseConfig)
 
@@ -11,7 +12,7 @@ const app = initializeApp(environment.firebaseConfig)
   })
   export class authService {
   
-    constructor() { }
+    constructor(private router: Router) { }
 
     authGoogle(){
         const provider = new GoogleAuthProvider();
@@ -25,7 +26,9 @@ const app = initializeApp(environment.firebaseConfig)
             console.log(token);
             // The signed-in user info.
             const user = result.user;
-            console.log(user);
+            console.log(user.email);
+            this.router.navigate(['/chat']);
+              
             // IdP data available using getAdditionalUserInfo(result)
             // ...
           }).catch((error) => {
@@ -38,6 +41,17 @@ const app = initializeApp(environment.firebaseConfig)
             const credential = GoogleAuthProvider.credentialFromError(error);
             // ...
           });
+    }
+
+    outGoogle(){
+      const auth = getAuth();
+      signOut(auth).then(() => {
+        // Sign-out successful.
+        this.router.navigate(['/login']);
+        alert('vas a irte')
+      }).catch((error) => {
+        // An error happened.
+      });
     }
 
   }
