@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { IonicModule } from '@ionic/angular';
 import { FormsModule } from '@angular/forms';
-import { LoginRoutingModule } from './home-routing.module';
+import { LoginRoutingModule } from './login-routing.module';
 import { LoginPage } from './login.component';
 
 

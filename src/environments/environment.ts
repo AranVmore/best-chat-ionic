@@ -10,7 +10,7 @@ export const environment = {
     storageBucket: "el-mejor-chat-del-mundo-479c1.appspot.com",
     messagingSenderId: "558520547135",
     appId: "1:558520547135:web:7fe6523752865175a0458a",
-    measurementId: "G-FC4DH3W6S6"
+    measurementId: "G-FC4DH3W6S6", 
   },
   production: false
 };

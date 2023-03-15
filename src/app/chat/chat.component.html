@@ -1,14 +1,25 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>
-      Let's GO!
-    </ion-title>
-    <img src="assets/icon/icons8-logout-48.png" class="iconshead" (click)="outGoogle()">
+    <ion-title> Let's GO! </ion-title>
+    <img
+      src="assets/icon/icons8-logout-48.png"
+      class="iconshead"
+      (click)="outGoogle()"
+    />
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
   <div id="container">
+    <div>
+      <label for="message"> message </label>
+      <input id="name" type="text" />
+    </div>
 
+    <ion-button (click)="sendMessage()">Send</ion-button>
+    <!-- <input id="name" type="text" [formControl]="messageInput">
+      <ion-button (click)="sendMessage()" [disabled]="!messageInput.valid">Send</ion-button> -->
   </div>
+
+  <app-message></app-message>
 </ion-content>
