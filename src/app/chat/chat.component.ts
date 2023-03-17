@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { authService } from '../services/auth.service';
-import { FormBuilder } from '@angular/forms';
 import { MessageService } from '../services/message.service';
-
+import { FormBuilder, FormControl } from '@angular/forms';
+import { Message } from '../message';
 
 @Component({
   selector: 'app-chat',
@@ -11,17 +11,14 @@ import { MessageService } from '../services/message.service';
 })
 export class ChatPage implements OnInit {
 
-  checkoutForm;
+  message = new FormControl('');
+  msgSend: string = '';
 
   constructor(
     private authService: authService, 
-    private formBuilder: FormBuilder,
-    private messageService: MessageService
-  ) { 
-    this.checkoutForm = this.formBuilder.group({
-      name: '',
-      address: ''
-    });
+    private messageService: MessageService,
+  ){ 
+    //this.messageService.getMensajes().subscribe(m => this.message = m);
   }
 
   ngOnInit() {}
@@ -30,9 +27,14 @@ export class ChatPage implements OnInit {
     this.authService.outGoogle();
   }
 
-  sendMessage(){
-    this.messageService.sendMessage()
-    console.log('enviado');
+  // sendMessage(){
+  //   this.messageService.sendMessage()
+  //   console.log('enviado');
     
+  // }
+
+  addMessage(): void{
+    this.messageService.addMessage(this.msgSend);
+    console.log('enviado');
   }
 }

@@ -5,6 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { ChatRoutingModule } from './chat-routing.module';
 import { ChatPage } from './chat.component';
 import { MessageComponent } from './message/message.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 
@@ -15,6 +16,7 @@ import { MessageComponent } from './message/message.component';
     FormsModule,
     IonicModule,
     ChatRoutingModule,
+    ReactiveFormsModule
   ],
   exports: [ChatPage]
 })

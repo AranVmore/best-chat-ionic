@@ -1,25 +1,33 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title> Let's GO! </ion-title>
+    <div class="nav">
+    <ion-title> Bienvenido al chat </ion-title>
     <img
       src="assets/icon/icons8-logout-48.png"
       class="iconshead"
       (click)="outGoogle()"
     />
+  </div>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
+
+
   <div id="container">
+    <app-message></app-message>
+
+  </div>
+</ion-content>
+
+<ion-footer>
+  <div class="footer">
+
     <div>
-      <label for="message"> message </label>
-      <input id="name" type="text" />
+      <label for="message"> Mensaje: </label>
+      <input [(ngModel)]="msgSend" id="message" />
     </div>
 
-    <ion-button (click)="sendMessage()">Send</ion-button>
-    <!-- <input id="name" type="text" [formControl]="messageInput">
-      <ion-button (click)="sendMessage()" [disabled]="!messageInput.valid">Send</ion-button> -->
+    <ion-button (click)="addMessage()">Enviar</ion-button>
   </div>
-
-  <app-message></app-message>
-</ion-content>
+</ion-footer>

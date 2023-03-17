@@ -3,6 +3,9 @@ import { initializeApp } from "firebase/app";
 import { environment } from 'src/environments/environment';
 import { getDatabase } from "@angular/fire/database";
 import { AngularFireDatabase, AngularFireList } from '@angular/fire/compat/database';
+import { Message } from '../message';
+import { map, Observable } from 'rxjs';
+
 
 // Initialize Firebase
 const app = initializeApp(environment.firebaseConfig);
@@ -16,23 +19,54 @@ const database = getDatabase(app);
 })
 export class MessageService {
 
-  private mensajesDB: AngularFireList<any>;
+  private mensajesDB: AngularFireList<Message>;
+      //conversacion: Message[] = [];
+
 
   constructor(
     private db: AngularFireDatabase
     ) { 
 
-    this.mensajesDB = this.db.list('/message', (ref:any) =>
+    this.mensajesDB = this.db.list('/message', (ref) =>
       ref.orderByChild('date')
     );
     }
 
-    sendMessage(){
+    // sendMessage(){
+    //   this.mensajesDB.push({
+    //     user: 'Aran',
+    //     id:  new Date().getTime(),
+    //     fecha: new Date().toLocaleDateString('es-ES'),
+    //     time: new Date().toLocaleTimeString('es-ES'),
+    //     message: 'Mensaje de prueba2',
+    //   });
+    // }
+
+    addMessage(msg: string){
       this.mensajesDB.push({
-        user: 'Aran',
+        text: msg,
+        user: 'Lorena',
+        id:  new Date().getTime(),
         fecha: new Date().toLocaleDateString('es-ES'),
-        time: new Date().getHours()+':'+new Date().getMinutes(),
-        message: 'Mensaje de prueba2',
-      });
+        time: new Date().toLocaleTimeString('es-ES'),
+      })
     }
+
+    getMensajes(): Observable<Message[]> {
+      return this.mensajesDB.snapshotChanges().pipe(
+        map((changes) =>
+          changes.map((c) => this.getUserFromPayload(c.payload))
+        )
+      );
+    }
+
+    getUserFromPayload(payload: any): Message{
+      return {
+        $key: payload.key,
+        ...payload.val(),
+      };
+    }
+    // addMessage(msg: Message){
+    //   this.mensajesDB.push(m)
+    // }
 }
