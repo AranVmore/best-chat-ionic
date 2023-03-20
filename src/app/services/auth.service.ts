@@ -1,11 +1,9 @@
-import { Injectable } from '@angular/core';
+import { Injectable, EventEmitter } from '@angular/core';
 import {
   getAuth,
   signOut,
   GoogleAuthProvider,
 } from 'firebase/auth';
-import { initializeApp } from 'firebase/app';
-import { environment } from 'src/environments/environment';
 import { Router } from '@angular/router';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 
@@ -14,6 +12,7 @@ import { AngularFireAuth } from '@angular/fire/compat/auth';
 })
 export class authService {
   userData: any;
+  user$ = new EventEmitter<string>(); //observable
 
   constructor(private router: Router, private auth: AngularFireAuth) {
     this.auth.authState.subscribe((user) => {
@@ -53,6 +52,7 @@ export class authService {
         console.log('algo ha fallado');
       });
   }
+
 }
 
 // NOTAS:

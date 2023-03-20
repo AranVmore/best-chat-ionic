@@ -30,22 +30,15 @@ export class MessageService {
     this.mensajesDB = this.db.list('/message', (ref) =>
       ref.orderByChild('date')
     );
+
+    console.log(this.mensajesDB);
+
     }
 
-    // sendMessage(){
-    //   this.mensajesDB.push({
-    //     user: 'Aran',
-    //     id:  new Date().getTime(),
-    //     fecha: new Date().toLocaleDateString('es-ES'),
-    //     time: new Date().toLocaleTimeString('es-ES'),
-    //     message: 'Mensaje de prueba2',
-    //   });
-    // }
-
-    addMessage(msg: string){
+    addMessage(msg: string, userData:string){
       this.mensajesDB.push({
         text: msg,
-        user: 'Lorena',
+        user: userData,
         id:  new Date().getTime(),
         fecha: new Date().toLocaleDateString('es-ES'),
         time: new Date().toLocaleTimeString('es-ES'),
@@ -66,7 +59,6 @@ export class MessageService {
         ...payload.val(),
       };
     }
-    // addMessage(msg: Message){
-    //   this.mensajesDB.push(m)
-    // }
+
+    
 }

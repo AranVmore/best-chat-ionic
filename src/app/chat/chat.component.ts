@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, EventEmitter } from '@angular/core';
 import { authService } from '../services/auth.service';
 import { MessageService } from '../services/message.service';
 import { FormBuilder, FormControl } from '@angular/forms';
@@ -13,28 +13,27 @@ export class ChatPage implements OnInit {
 
   message = new FormControl('');
   msgSend: string = '';
+  //userData: string = 'Aran';
+  currentUser: string = '';
+  actualUser = JSON.parse(localStorage.getItem('user')!);
 
   constructor(
     private authService: authService, 
     private messageService: MessageService,
   ){ 
-    //this.messageService.getMensajes().subscribe(m => this.message = m);
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.authService.user$.subscribe( texto => { this.currentUser = texto; console.log(texto);
+     } )
+  }
 
   outGoogle(){
     this.authService.outGoogle();
-  }
-
-  // sendMessage(){
-  //   this.messageService.sendMessage()
-  //   console.log('enviado');
-    
-  // }
+  } 
 
   addMessage(): void{
-    this.messageService.addMessage(this.msgSend);
-    console.log('enviado');
+    this.currentUser = JSON.parse(localStorage.getItem('user')!);
+    this.messageService.addMessage(this.msgSend, this.currentUser);
   }
 }

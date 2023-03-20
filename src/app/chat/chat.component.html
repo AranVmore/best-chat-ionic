@@ -1,7 +1,7 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <div class="nav">
-    <ion-title> Bienvenido al chat </ion-title>
+    <ion-title> Bienvenido al chat  {{ actualUser }} </ion-title>
     <img
       src="assets/icon/icons8-logout-48.png"
       class="iconshead"
@@ -11,13 +11,10 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
+<ion-content>
 
-
-  <div id="container">
     <app-message></app-message>
 
-  </div>
 </ion-content>
 
 <ion-footer>

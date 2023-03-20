@@ -1,3 +1,26 @@
-<div>
-    <h2>Listado de mensajes</h2>
-</div>
+
+ 
+    <ion-grid>
+      <ion-row *ngFor="let msnChat of messages">
+   
+        <ion-col size="9" *ngIf="msnChat.user !== actualUser" class="message other-message">
+          <b>{{ msnChat.user }}</b><br>
+          <span>{{ msnChat.text }}</span>
+          <div class="time" text-right><br>{{ msnChat.time }}</div>
+        </ion-col>
+   
+        <ion-col offset="3" size="9" *ngIf="msnChat.user === actualUser" class="message my-message">
+          <b>{{ msnChat.user }}</b><br>
+          <span>{{ msnChat.text }}</span>
+          <div class="time" text-right><br>{{ msnChat.time }}</div>
+        </ion-col>
+   
+      </ion-row>
+    </ion-grid>
+
+
+
+<!-- <div *ngFor="let msnChat of messages">
+    <b> {{ msnChat.user }}:</b> {{ msnChat.text }}
+    <div class="time" text-right><br>{{ msnChat.time }}</div>
+</div> -->
