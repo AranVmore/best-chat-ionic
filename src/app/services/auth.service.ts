@@ -33,6 +33,7 @@ export class authService {
       .then((result) => {
         const user = result.user;
         this.userData = user?.displayName;
+        const photoURL = user?.photoURL;
         localStorage.setItem('user', JSON.stringify(user?.displayName));
         this.router.navigate(['chat']); //navegar a chat
       })

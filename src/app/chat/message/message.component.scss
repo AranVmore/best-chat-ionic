@@ -6,18 +6,31 @@
   }
   
   .my-message {
-    background: var(--ion-color-tertiary);
+    background: linear-gradient(to right, rgb(243, 59, 93), 40%, rgb(237, 174, 226));
     color: #fff;
+    float: right;
   }
   
   .other-message {
-    background: var(--ion-color-secondary);
+    background: linear-gradient(to right, rgb(59, 127, 243), 40%, rgb(117, 165, 247));
     color: #fff;
+    float: left;
   }
   
   .time {
-    color: #dfdfdf;
+    color: white;
     float: right;
     font-size: small;
   }
   
+  ion-list{
+    // width: 40%;
+    // float: right;
+    margin: 0 1rem;
+    padding: 0 2rem;
+}
+
+ion-row{
+  
+  
+}

@@ -2,11 +2,15 @@
   <ion-toolbar>
     <div class="nav">
     <ion-title> Bienvenido al chat  {{ actualUser }} </ion-title>
-    <img
+      <ion-avatar>
+        <img src="assets/img/4500_7_02.jpg" />
+      </ion-avatar>
+
+    <ion-img 
       src="assets/icon/icons8-logout-48.png"
       class="iconshead"
-      (click)="outGoogle()"
-    />
+      (click)="outGoogle()">
+    </ion-img>
   </div>
   </ion-toolbar>
 </ion-header>
@@ -19,12 +23,13 @@
 
 <ion-footer>
   <div class="footer">
-
-    <div>
-      <label for="message"> Mensaje: </label>
-      <input [(ngModel)]="msgSend" id="message" />
-    </div>
-
-    <ion-button (click)="addMessage()">Enviar</ion-button>
+      <!-- <ion-label position="floating">Mensaje</ion-label> -->
+      <ion-input placeholder="Escribe el mensaje" required [(ngModel)]="msgSend" id="message"></ion-input>
+    <!-- <ion-button (click)="addMessage()" >Enviar</ion-button> -->
+    <ion-img 
+    src="assets/icon/enviar.png"
+    class="iconsend"
+    (click)="addMessage()">
+    </ion-img>
   </div>
 </ion-footer>

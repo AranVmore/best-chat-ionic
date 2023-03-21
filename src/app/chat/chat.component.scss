@@ -9,6 +9,9 @@
     width: 28px;
     cursor: pointer;
 }
+.iconsend{
+    cursor: pointer;
+}
 
 #container {
     text-align: center;
@@ -18,3 +21,14 @@
     top: 15%;
     transform: translateY(-10%);
   }
+
+  ion-input{
+    color: black;
+    border-image: conic-gradient(lime, fuchsia, cyan) 1;
+    border-radius: 20px;
+    margin-right: 10px;
+}
+  ion-button{
+    background: lightpink;
+}
+

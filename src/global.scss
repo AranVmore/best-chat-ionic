@@ -39,18 +39,26 @@
     justify-content: space-between;
 }
 
-ion-content{
-
+ion-avatar{
+    width: 36px;
+    height: 36px;
+    margin-right: 1rem;
+    cursor: pointer;
 }
 
-// #container {
-//     text-align: center;
-//     position: absolute;
-//     left: 0;
-//     right: 0;
-//     top: 50%;
-//     transform: translateY(-50%);
-//   }
+ion-input{
+    border: 1px solid grey;
+    border-radius: 20px;
+}
+
+#container {
+    text-align: center;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+  }
 
 // STYLES BOTTONS
 button{

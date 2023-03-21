@@ -1,7 +1,7 @@
 import { Component, OnInit, EventEmitter } from '@angular/core';
 import { authService } from '../services/auth.service';
 import { MessageService } from '../services/message.service';
-import { FormBuilder, FormControl } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Message } from '../message';
 
 @Component({
@@ -11,7 +11,7 @@ import { Message } from '../message';
 })
 export class ChatPage implements OnInit {
 
-  message = new FormControl('');
+  datos = new FormControl('');
   msgSend: string = '';
   //userData: string = 'Aran';
   currentUser: string = '';
@@ -35,5 +35,6 @@ export class ChatPage implements OnInit {
   addMessage(): void{
     this.currentUser = JSON.parse(localStorage.getItem('user')!);
     this.messageService.addMessage(this.msgSend, this.currentUser);
+    this.msgSend = '';
   }
 }
