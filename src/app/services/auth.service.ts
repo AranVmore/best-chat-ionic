@@ -6,23 +6,37 @@ import {
 } from 'firebase/auth';
 import { Router } from '@angular/router';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
+import { Geolocation } from '@capacitor/geolocation';
+
 
 @Injectable({
   providedIn: 'root',
 })
 export class authService {
   userData: any;
+  //userPhoto: any;
   user$ = new EventEmitter<string>(); //observable
 
+  // const printCurrentPosition = async () => {
+  //   const coordinates = await Geolocation.getCurrentPosition();
+  
+  //   console.log('Current position:', coordinates);
+  // };
+
   constructor(private router: Router, private auth: AngularFireAuth) {
+    //comprobamos que hay cambios del usuario
     this.auth.authState.subscribe((user) => {
       if (user) {
         this.userData = user;
+        //this.userPhoto = user.photoURL;
         localStorage.setItem('user', JSON.stringify(this.userData.displayName));
         JSON.parse(localStorage.getItem('user')!);
+        JSON.parse(localStorage.getItem('photo')!);
       } else {
         localStorage.setItem('user', 'null');
+        localStorage.setItem('photo', 'null');
         JSON.parse(localStorage.getItem('user')!);
+        JSON.parse(localStorage.getItem('photo')!);
       }
     });
   }
@@ -33,8 +47,10 @@ export class authService {
       .then((result) => {
         const user = result.user;
         this.userData = user?.displayName;
-        const photoURL = user?.photoURL;
+        //const photo = user?.photoURL;
+        //alert(photo);
         localStorage.setItem('user', JSON.stringify(user?.displayName));
+        localStorage.setItem('photo', JSON.stringify(user?.photoURL));
         this.router.navigate(['chat']); //navegar a chat
       })
       .catch((error) => {
@@ -44,8 +60,11 @@ export class authService {
 
   outGoogle() {
     const auth = getAuth();
+    localStorage.clear();
     signOut(auth)
       .then(() => {
+        localStorage.removeItem('user');
+        localStorage.clear();
         this.router.navigate(['login']);
         console.log('has salido del chat');
       })
@@ -53,6 +72,12 @@ export class authService {
         console.log('algo ha fallado');
       });
   }
+
+  get isLoggedIn(): boolean {
+    const user = JSON.parse(localStorage.getItem('user')!);
+    return user !== 'null' ? true : false;
+  }
+
 
 }
 

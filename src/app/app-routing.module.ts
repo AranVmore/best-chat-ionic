@@ -1,23 +1,33 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
-import { MessageComponent } from './chat/message/message.component';
+import { AuthGuard } from './guards/auth.guard';
+import { LoggedinGuard } from './guards/loggedin.guard';
+import { AngularFireAuthGuard, redirectLoggedInTo, redirectUnauthorizedTo } from '@angular/fire/compat/auth-guard';
+
+const redirectUnauthorizedToLogin = () => redirectUnauthorizedTo(['login']);
+const redirectLoggedInToSendEmail = () => redirectLoggedInTo(['chat']);
 
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'login',
+    redirectTo: 'chat',
     pathMatch: 'full'
   },
 
 
   {
     path: 'login',
-    loadChildren: () => import('./login/login.module').then( m => m.LoginModule)
+    loadChildren: () => import('./login/login.module').then( m => m.LoginModule),
+    canActivate: [AngularFireAuthGuard],
+    data: { authGuardPipe: redirectLoggedInToSendEmail },
   },
 
   {
     path: 'chat',
-    loadChildren: () => import('./chat/chat.module').then( m => m.ChatModule)
+    loadChildren: () => import('./chat/chat.module').then( m => m.ChatModule),
+    //canLoad: [ AuthGuard ], 
+    canActivate: [ AngularFireAuthGuard ],
+    data: { authGuardPipe: redirectUnauthorizedToLogin },
   },
 
   {

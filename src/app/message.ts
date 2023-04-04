@@ -2,6 +2,6 @@ export interface Message {
     text: string;
     user: string;
     id:  number;
-    fecha: string;
+    date: string;
     time: string;
 }

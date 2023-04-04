@@ -28,6 +28,7 @@ export class MessageService {
     ) { 
 
     this.mensajesDB = this.db.list('/message', (ref) =>
+      //ref.orderByChild('date')
       ref.orderByChild('date')
     );
 
@@ -40,7 +41,7 @@ export class MessageService {
         text: msg,
         user: userData,
         id:  new Date().getTime(),
-        fecha: new Date().toLocaleDateString('es-ES'),
+        date: new Date().toLocaleString('es-ES'),
         time: new Date().toLocaleTimeString('es-ES'),
       })
     }

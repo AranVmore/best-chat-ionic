@@ -3,6 +3,8 @@ import { authService } from '../services/auth.service';
 import { MessageService } from '../services/message.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Message } from '../message';
+import { PlacesService } from '../services';
+
 
 @Component({
   selector: 'app-chat',
@@ -11,24 +13,33 @@ import { Message } from '../message';
 })
 export class ChatPage implements OnInit {
 
-  datos = new FormControl('');
+  //datos = new FormControl('');
   msgSend: string = '';
-  //userData: string = 'Aran';
   currentUser: string = '';
   actualUser = JSON.parse(localStorage.getItem('user')!);
+  actualPhoto = JSON.parse(localStorage.getItem('photo')!);
+
 
   constructor(
     private authService: authService, 
     private messageService: MessageService,
+    private placesService: PlacesService
   ){ 
   }
 
   ngOnInit() {
     this.authService.user$.subscribe( texto => { this.currentUser = texto; console.log(texto);
      } )
+
+     
+  }
+
+  get isUserLocationReady(){
+    return this.placesService.isUserLocationReady;
   }
 
   outGoogle(){
+    localStorage.clear();
     this.authService.outGoogle();
   } 
 
